@@ -19,10 +19,6 @@ const Dashboard = () => {
     }
   };
   
-  const goToProfile = () => {
-    navigate('/profile');
-  };
-  
   return (
     <div>
       <h2>Dashboard</h2>
@@ -37,10 +33,6 @@ const Dashboard = () => {
         <h3>Profile</h3>
         <p><strong>Email:</strong> {currentUser.email}</p>
         <p><strong>Nickname:</strong> {currentUser.displayName}</p>
-        
-        <button onClick={goToProfile}>
-          Edit Profile
-        </button>
       </div>
       
       <button onClick={handleLogout}>

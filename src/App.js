@@ -7,7 +7,6 @@ import SignUp from './components/auth/SignUp';
 import Login from './components/auth/Login';
 import ForgotPassword from './components/auth/ForgotPassword';
 import Dashboard from './pages/Dashboard';
-import Profile from './pages/Profile';
 
 // Protected route component
 const PrivateRoute = ({ children }) => {
@@ -31,15 +30,6 @@ function App() {
             element={
               <PrivateRoute>
                 <Dashboard />
-              </PrivateRoute>
-            } 
-          />
-          
-          <Route 
-            path="/profile" 
-            element={
-              <PrivateRoute>
-                <Profile />
               </PrivateRoute>
             } 
           />
