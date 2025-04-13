@@ -1,12 +1,32 @@
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
-    match /{document=**} {
-      // For development only - allows all reads and writes
-      allow read, write: if true;
+    // Common functions to use throughout rules
+    function isSignedIn() {
+      return request.auth != null;
+    }
+    
+    function isOwner(userId) {
+      return request.auth.uid == userId;
+    }
+    
+    // User document rules
+    match /users/{userId} {
+      // Users can read/write only their own documents
+      allow read, update, delete: if isSignedIn() && isOwner(userId);
+      // Allow creation with valid structure
+      allow create: if isSignedIn() && isOwner(userId);
       
-      // For production, use something like:
-      // allow read, write: if request.auth != null;
+      // Add more specific rules for sub-collections
+      match /moods/{document=**} {
+        allow read, write: if isSignedIn() && isOwner(userId);
+      }
+    }
+    
+    // If you need public data that anyone can read
+    match /publicData/{document=**} {
+      allow read: if true;
+      allow write: if false; // No one can write directly
     }
   }
 }
