@@ -10,12 +10,24 @@ service cloud.firestore {
       return request.auth.uid == userId;
     }
     
+    // Allow public read access for user existence checks during signup
+    match /users/{document=**} {
+      allow read: if true;
+      
+      // Restrict write operations to authenticated users
+      allow create: if isSignedIn() && 
+        request.resource.data.email is string && 
+        request.resource.data.email.trim() != '' &&
+        request.resource.data.username is string && 
+        request.resource.data.username.trim() != '';
+      
+      allow update, delete: if isSignedIn() && isOwner(document);
+    }
+    
     // User document rules
     match /users/{userId} {
       // Users can read/write only their own documents
       allow read, update, delete: if isSignedIn() && isOwner(userId);
-      // Allow creation with valid structure
-      allow create: if isSignedIn() && isOwner(userId);
       
       // Add more specific rules for sub-collections
       match /moods/{document=**} {

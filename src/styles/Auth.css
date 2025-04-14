@@ -2,478 +2,519 @@
 
 /* Container */
 .auth-container {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: var(--spacing-md);
-    background: linear-gradient(135deg, var(--color-bg-default) 0%, var(--color-bg-paper) 100%);
-  }
-  
-  /* Card */
-  .auth-card {
-    width: 100%;
-    max-width: 480px;
-    padding: var(--spacing-xl);
-    /* background-color: var(--color-bg-paper);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: var(--spacing-md);
+  background: linear-gradient(
+    135deg,
+    var(--color-bg-default) 0%,
+    var(--color-bg-paper) 100%
+  );
+}
+
+/* Card */
+.auth-card {
+  width: 100%;
+  max-width: 480px;
+  padding: var(--spacing-xl);
+  /* background-color: var(--color-bg-paper);
     border-radius: var(--border-radius-large);
     box-shadow: var(--shadow-large); */
-    animation: fadeIn 0.6s ease;
+  animation: fadeIn 0.6s ease;
+}
+
+/* Card with shake animation */
+.auth-card.shake {
+  animation: shake 0.6s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+}
+
+/* Logo Container */
+.auth-logo-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: var(--spacing-xl);
+}
+
+/* Logo */
+.auth-logo {
+  width: 64px;
+  height: 64px;
+}
+
+/* Title */
+.auth-title {
+  text-align: center;
+  margin-bottom: 24px;
+  background: linear-gradient(45deg, #9d4edd 30%, #c77dff 90%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: var(--font-size-xxl);
+  font-weight: var(--font-weight-semibold);
+}
+
+/* Form */
+.auth-form {
+  width: 100%;
+}
+
+/* Form Group */
+.auth-form-group {
+  margin-bottom: var(--spacing-md);
+}
+
+/* Form Header */
+.auth-form-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Label */
+.auth-label {
+  display: block;
+  margin-bottom: var(--spacing-xs);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-secondary);
+}
+
+/* Input Container */
+.auth-input-container {
+  position: relative;
+}
+
+/* Input */
+.auth-input {
+  width: 100%;
+  padding: var(--spacing-sm) var(--spacing-md);
+  padding-left: var(--spacing-xl);
+  background-color: var(--color-bg-elevated);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--border-radius-medium);
+  color: var(--color-text-primary);
+  font-size: var(--font-size-md);
+  transition: all var(--transition-short) ease;
+}
+
+.auth-input:focus {
+  outline: none;
+  border-color: var(--color-primary-main);
+  box-shadow: 0 0 0 2px rgba(157, 78, 221, 0.3);
+}
+
+/* Input Icon */
+.auth-input-icon {
+  position: absolute;
+  left: var(--spacing-sm);
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--color-text-secondary);
+}
+
+/* Forgot Password Link */
+.auth-forgot-password {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  text-decoration: none;
+  transition: color var(--transition-short) ease;
+}
+
+.auth-forgot-password:hover {
+  color: var(--color-primary-light);
+}
+
+/* Button */
+.auth-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: var(--spacing-sm) var(--spacing-lg);
+  background: var(--gradient-primary);
+  color: var(--color-primary-contrast);
+  border: none;
+  border-radius: var(--border-radius-medium);
+  cursor: pointer;
+  font-weight: var(--font-weight-medium);
+  font-size: var(--font-size-md);
+  transition: all var(--transition-short) ease;
+  box-shadow: var(--shadow-small);
+  /* margin-bottom: var(--spacing-lg); */
+}
+
+.auth-button:hover {
+  box-shadow: var(--shadow-medium);
+  transform: translateY(-1px);
+}
+
+.auth-button:active {
+  transform: translateY(0);
+}
+
+.auth-button.loading {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+/* Secondary Button */
+.auth-secondary-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: var(--spacing-sm) var(--spacing-lg);
+  background: transparent;
+  color: var(--color-primary-light);
+  border: 1px solid var(--color-primary-light);
+  border-radius: var(--border-radius-medium);
+  cursor: pointer;
+  font-weight: var(--font-weight-medium);
+  font-size: var(--font-size-md);
+  transition: all var(--transition-short) ease;
+}
+
+.auth-secondary-button:hover {
+  background-color: rgba(157, 78, 221, 0.1);
+}
+
+/* Link Button (no text decoration) */
+.auth-link-button {
+  text-decoration: none;
+  display: block;
+  width: 100%;
+}
+
+/* Divider */
+.auth-divider {
+  display: flex;
+  align-items: center;
+  margin: var(--spacing-md) 0;
+}
+
+/* Divider Line */
+.auth-divider-line {
+  flex: 1;
+  height: 1px;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Divider Text */
+.auth-divider-text {
+  padding: 0 var(--spacing-sm);
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-sm);
+}
+
+/* Error Alert */
+.auth-error-alert {
+  background-color: rgba(255, 82, 82, 0.1);
+  color: var(--color-error);
+  border: 1px solid var(--color-error);
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-radius: var(--border-radius-medium);
+  font-size: var(--font-size-sm);
+  margin-bottom: var(--spacing-md);
+  display: flex;
+  align-items: center;
+}
+
+/* Error Icon */
+.auth-error-icon {
+  margin-right: var(--spacing-xs);
+}
+
+/* Success Alert */
+.auth-success-alert {
+  background-color: rgba(76, 175, 80, 0.1);
+  color: var(--color-success);
+  border: 1px solid var(--color-success);
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-radius: var(--border-radius-medium);
+  font-size: var(--font-size-sm);
+  margin-bottom: var(--spacing-md);
+  display: flex;
+  align-items: center;
+}
+
+/* Success Icon */
+.auth-success-icon {
+  margin-right: var(--spacing-xs);
+}
+
+/* Step Indicator Container */
+.auth-step-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: var(--spacing-lg);
+}
+
+/* Step Indicator Dot */
+.auth-step-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin: 0 var(--spacing-xs);
+  transition: all var(--transition-short) ease;
+}
+
+.auth-step-dot.active {
+  background-color: var(--color-primary-main);
+}
+
+.auth-step-dot.completed {
+  background-color: var(--color-primary-light);
+}
+
+.auth-step-dot.inactive {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Step Description */
+.auth-step-description {
+  text-align: center;
+  margin-bottom: var(--spacing-md);
+  font-size: var(--font-size-md);
+  color: var(--color-text-secondary);
+}
+
+/* Profile Image Upload */
+.auth-profile-upload {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: var(--spacing-xl) 0;
+}
+
+/* Profile Image Container */
+.auth-profile-image {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background-color: var(--color-bg-elevated);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: var(--spacing-md);
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: var(--shadow-medium);
+}
+
+/* Profile Image */
+.auth-profile-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Profile Image Placeholder */
+.auth-profile-placeholder {
+  width: 60px;
+  height: 60px;
+  color: var(--color-text-secondary);
+}
+
+/* Upload Button */
+.auth-upload-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(157, 78, 221, 0.1);
+  color: var(--color-primary-light);
+  border: 1px solid var(--color-primary-light);
+  border-radius: var(--border-radius-medium);
+  padding: var(--spacing-xs) var(--spacing-md);
+  cursor: pointer;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  transition: all var(--transition-short) ease;
+}
+
+.auth-upload-button:hover {
+  background: rgba(157, 78, 221, 0.2);
+}
+
+/* Hidden File Input */
+.auth-file-input {
+  display: none;
+}
+
+/* Password Requirements */
+.auth-password-requirements {
+  margin-top: var(--spacing-xs);
+}
+
+/* Requirements List */
+.auth-requirements-list {
+  list-style-type: none;
+  padding: 0;
+  margin: var(--spacing-xs) 0 var(--spacing-md) 0;
+  font-size: var(--font-size-xs);
+}
+
+/* Requirement Item */
+.auth-requirement-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: var(--spacing-xs);
+  transition: color var(--transition-short) ease;
+  color: var(--color-text-secondary);
+}
+
+.auth-requirement-item.met {
+  color: var(--color-success);
+}
+
+/* Required field indicator */
+.auth-required {
+  color: var(--color-error);
+  margin-left: var(--spacing-xs);
+}
+
+/* Input error state */
+.auth-input-error {
+  border-color: var(--color-error) !important;
+}
+
+/* Error message below input */
+.auth-error-message {
+  color: var(--color-error);
+  font-size: var(--font-size-xs);
+  margin-top: var(--spacing-xs);
+  font-weight: var(--font-weight-medium);
+}
+
+/* Button container with consistent spacing */
+.auth-button-container {
+  margin: var(--spacing-lg) 0;
+}
+
+/* Requirement Icon */
+.auth-requirement-icon {
+  margin-right: var(--spacing-xs);
+}
+
+/* Skip Link */
+.auth-skip-link {
+  display: flex;
+  justify-content: center;
+  margin-top: var(--spacing-md);
+}
+
+/* Text Button */
+.auth-text-button {
+  background: transparent;
+  border: none;
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-sm);
+  cursor: pointer;
+  padding: var(--spacing-xs);
+  transition: color var(--transition-short) ease;
+}
+
+.auth-text-button:hover {
+  color: var(--color-primary-light);
+}
+
+/* Form Section */
+.auth-form-section {
+  margin-bottom: var(--spacing-lg);
+}
+
+/* Button Group */
+.auth-button-group {
+  display: flex;
+  gap: var(--spacing-md);
+  margin-top: var(--spacing-md);
+}
+
+/* Helper Text */
+.auth-helper-text {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-secondary);
+  margin-top: var(--spacing-xs);
+}
+
+/* Optional Label */
+.auth-optional-label {
+  font-size: var(--font-size-xs);
+  font-style: italic;
+  color: var(--color-text-secondary);
+  margin-left: var(--spacing-xs);
+}
+
+/* Step Content Animation */
+.auth-step-content {
+  animation: slideUp 0.5s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
   }
-  
-  /* Card with shake animation */
-  .auth-card.shake {
-    animation: shake 0.6s cubic-bezier(.36,.07,.19,.97) both;
+  to {
+    opacity: 1;
   }
-  
-  /* Logo Container */
-  .auth-logo-container {
-    display: flex;
-    justify-content: center;
-    margin-bottom: var(--spacing-xl);
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(10px);
+    opacity: 0;
   }
-  
-  /* Logo */
-  .auth-logo {
-    width: 64px;
-    height: 64px;
-  }
-  
-  /* Title */
-  .auth-title {
-    text-align: center;
-    margin-bottom: 24px;
-    background: linear-gradient(45deg, #9D4EDD 30%, #C77DFF 90%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    font-size: var(--font-size-xxl);
-    font-weight: var(--font-weight-semibold);
-  }
-  
-  /* Form */
-  .auth-form {
-    width: 100%;
-  }
-  
-  /* Form Group */
-  .auth-form-group {
-    margin-bottom: var(--spacing-md);
-  }
-  
-  /* Form Header */
-  .auth-form-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  /* Label */
-  .auth-label {
-    display: block;
-    margin-bottom: var(--spacing-xs);
-    font-size: var(--font-size-sm);
-    font-weight: var(--font-weight-medium);
-    color: var(--color-text-secondary);
-  }
-  
-  /* Input Container */
-  .auth-input-container {
-    position: relative;
-  }
-  
-  /* Input */
-  .auth-input {
-    width: 100%;
-    padding: var(--spacing-sm) var(--spacing-md);
-    padding-left: var(--spacing-xl);
-    background-color: var(--color-bg-elevated);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: var(--border-radius-medium);
-    color: var(--color-text-primary);
-    font-size: var(--font-size-md);
-    transition: all var(--transition-short) ease;
-  }
-  
-  .auth-input:focus {
-    outline: none;
-    border-color: var(--color-primary-main);
-    box-shadow: 0 0 0 2px rgba(157, 78, 221, 0.3);
-  }
-  
-  /* Input Icon */
-  .auth-input-icon {
-    position: absolute;
-    left: var(--spacing-sm);
-    top: 50%;
-    transform: translateY(-50%);
-    color: var(--color-text-secondary);
-  }
-  
-  /* Forgot Password Link */
-  .auth-forgot-password {
-    font-size: var(--font-size-sm);
-    color: var(--color-text-secondary);
-    text-decoration: none;
-    transition: color var(--transition-short) ease;
-  }
-  
-  .auth-forgot-password:hover {
-    color: var(--color-primary-light);
-  }
-  
-  /* Button */
-  .auth-button {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    padding: var(--spacing-sm) var(--spacing-lg);
-    background: var(--gradient-primary);
-    color: var(--color-primary-contrast);
-    border: none;
-    border-radius: var(--border-radius-medium);
-    cursor: pointer;
-    font-weight: var(--font-weight-medium);
-    font-size: var(--font-size-md);
-    transition: all var(--transition-short) ease;
-    box-shadow: var(--shadow-small);
-    /* margin-bottom: var(--spacing-lg); */
-  }
-  
-  .auth-button:hover {
-    box-shadow: var(--shadow-medium);
-    transform: translateY(-1px);
-  }
-  
-  .auth-button:active {
+  to {
     transform: translateY(0);
+    opacity: 1;
   }
-  
-  .auth-button.loading {
-    opacity: 0.7;
-    cursor: not-allowed;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .auth-card {
+    padding: var(--spacing-lg);
   }
-  
-  /* Secondary Button */
-  .auth-secondary-button {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    padding: var(--spacing-sm) var(--spacing-lg);
-    background: transparent;
-    color: var(--color-primary-light);
-    border: 1px solid var(--color-primary-light);
-    border-radius: var(--border-radius-medium);
-    cursor: pointer;
-    font-weight: var(--font-weight-medium);
-    font-size: var(--font-size-md);
-    transition: all var(--transition-short) ease;
-  }
-  
-  .auth-secondary-button:hover {
-    background-color: rgba(157, 78, 221, 0.1);
-  }
-  
-  /* Link Button (no text decoration) */
-  .auth-link-button {
-    text-decoration: none;
-    display: block;
-    width: 100%;
-  }
-  
-  /* Divider */
-  .auth-divider {
-    display: flex;
-    align-items: center;
-    margin: var(--spacing-md) 0;
-  }
-  
-  /* Divider Line */
-  .auth-divider-line {
-    flex: 1;
-    height: 1px;
-    background-color: rgba(255, 255, 255, 0.1);
-  }
-  
-  /* Divider Text */
-  .auth-divider-text {
-    padding: 0 var(--spacing-sm);
-    color: var(--color-text-secondary);
-    font-size: var(--font-size-sm);
-  }
-  
-  /* Error Alert */
-  .auth-error-alert {
-    background-color: rgba(255, 82, 82, 0.1);
-    color: var(--color-error);
-    border: 1px solid var(--color-error);
-    padding: var(--spacing-sm) var(--spacing-md);
-    border-radius: var(--border-radius-medium);
-    font-size: var(--font-size-sm);
-    margin-bottom: var(--spacing-md);
-    display: flex;
-    align-items: center;
-  }
-  
-  /* Error Icon */
-  .auth-error-icon {
-    margin-right: var(--spacing-xs);
-  }
-  
-  /* Success Alert */
-  .auth-success-alert {
-    background-color: rgba(76, 175, 80, 0.1);
-    color: var(--color-success);
-    border: 1px solid var(--color-success);
-    padding: var(--spacing-sm) var(--spacing-md);
-    border-radius: var(--border-radius-medium);
-    font-size: var(--font-size-sm);
-    margin-bottom: var(--spacing-md);
-    display: flex;
-    align-items: center;
-  }
-  
-  /* Success Icon */
-  .auth-success-icon {
-    margin-right: var(--spacing-xs);
-  }
-  
-  /* Step Indicator Container */
-  .auth-step-container {
-    display: flex;
-    justify-content: center;
-    margin-bottom: var(--spacing-lg);
-  }
-  
-  /* Step Indicator Dot */
-  .auth-step-dot {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    margin: 0 var(--spacing-xs);
-    transition: all var(--transition-short) ease;
-  }
-  
-  .auth-step-dot.active {
-    background-color: var(--color-primary-main);
-  }
-  
-  .auth-step-dot.completed {
-    background-color: var(--color-primary-light);
-  }
-  
-  .auth-step-dot.inactive {
-    background-color: rgba(255, 255, 255, 0.2);
-  }
-  
-  /* Step Description */
-  .auth-step-description {
-    text-align: center;
-    margin-bottom: var(--spacing-md);
-    font-size: var(--font-size-md);
-    color: var(--color-text-secondary);
-  }
-  
-  /* Profile Image Upload */
-  .auth-profile-upload {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: var(--spacing-xl) 0;
-  }
-  
-  /* Profile Image Container */
-  .auth-profile-image {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    background-color: var(--color-bg-elevated);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: var(--spacing-md);
-    overflow: hidden;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: var(--shadow-medium);
-  }
-  
-  /* Profile Image */
-  .auth-profile-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-  
-  /* Profile Image Placeholder */
-  .auth-profile-placeholder {
-    width: 60px;
-    height: 60px;
-    color: var(--color-text-secondary);
-  }
-  
-  /* Upload Button */
-  .auth-upload-button {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    background: rgba(157, 78, 221, 0.1);
-    color: var(--color-primary-light);
-    border: 1px solid var(--color-primary-light);
-    border-radius: var(--border-radius-medium);
-    padding: var(--spacing-xs) var(--spacing-md);
-    cursor: pointer;
-    font-size: var(--font-size-sm);
-    font-weight: var(--font-weight-medium);
-    transition: all var(--transition-short) ease;
-  }
-  
-  .auth-upload-button:hover {
-    background: rgba(157, 78, 221, 0.2);
-  }
-  
-  /* Hidden File Input */
-  .auth-file-input {
-    display: none;
-  }
-  
-  /* Password Requirements */
-  .auth-password-requirements {
-    margin-top: var(--spacing-xs);
-  }
-  
-  /* Requirements List */
-  .auth-requirements-list {
-    list-style-type: none;
-    padding: 0;
-    margin: var(--spacing-xs) 0 var(--spacing-md) 0;
-    font-size: var(--font-size-xs);
-  }
-  
-  /* Requirement Item */
-  .auth-requirement-item {
-    display: flex;
-    align-items: center;
-    margin-bottom: var(--spacing-xs);
-    transition: color var(--transition-short) ease;
-    color: var(--color-text-secondary);
-  }
-  
-  .auth-requirement-item.met {
-    color: var(--color-success);
-  }
-  
-  /* Required field indicator */
-  .auth-required {
-    color: var(--color-error);
-    margin-left: var(--spacing-xs);
-  }
-  
-  /* Input error state */
-  .auth-input-error {
-    border-color: var(--color-error) !important;
-  }
-  
-  /* Error message below input */
-  .auth-error-message {
-    color: var(--color-error);
-    font-size: var(--font-size-xs);
-    margin-top: var(--spacing-xs);
-    font-weight: var(--font-weight-medium);
-  }
-  
-  /* Button container with consistent spacing */
-  .auth-button-container {
-    margin: var(--spacing-lg) 0;
-  }
-  
-  /* Requirement Icon */
-  .auth-requirement-icon {
-    margin-right: var(--spacing-xs);
-  }
-  
-  /* Skip Link */
-  .auth-skip-link {
-    display: flex;
-    justify-content: center;
-    margin-top: var(--spacing-md);
-  }
-  
-  /* Text Button */
-  .auth-text-button {
-    background: transparent;
-    border: none;
-    color: var(--color-text-secondary);
-    font-size: var(--font-size-sm);
-    cursor: pointer;
-    padding: var(--spacing-xs);
-    transition: color var(--transition-short) ease;
-  }
-  
-  .auth-text-button:hover {
-    color: var(--color-primary-light);
-  }
-  
-  /* Form Section */
-  .auth-form-section {
-    margin-bottom: var(--spacing-lg);
-  }
-  
-  /* Button Group */
+
   .auth-button-group {
-    display: flex;
-    gap: var(--spacing-sm);
-    margin-top: var(--spacing-md);
+    flex-direction: column;
   }
-  
-  /* Helper Text */
-  .auth-helper-text {
-    font-size: var(--font-size-xs);
-    color: var(--color-text-secondary);
-    margin-top: var(--spacing-xs);
-  }
-  
-  /* Optional Label */
-  .auth-optional-label {
-    font-size: var(--font-size-xs);
-    font-style: italic;
-    color: var(--color-text-secondary);
-    margin-left: var(--spacing-xs);
-  }
-  
-  /* Step Content Animation */
-  .auth-step-content {
-    animation: slideUp 0.5s ease;
-  }
-  
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
-  }
-  
-  @keyframes slideUp {
-    from {
-      transform: translateY(10px);
-      opacity: 0;
-    }
-    to {
-      transform: translateY(0);
-      opacity: 1;
-    }
-  }
-  
-  /* Responsive */
-  @media (max-width: 480px) {
-    .auth-card {
-      padding: var(--spacing-lg);
-    }
-    
-    .auth-button-group {
-      flex-direction: column;
-    }
-  }
+}
+
+/* Add these styles to the existing Auth.css file */
+
+/* Input Container Modifications */
+.auth-input-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.auth-input-status {
+  position: absolute;
+  right: var(--spacing-sm);
+  display: flex;
+  align-items: center;
+}
+
+.validation-icon {
+  transition: all var(--transition-short) ease;
+}
+
+.validation-icon.valid {
+  color: var(--color-success);
+}
+
+.validation-icon.invalid {
+  color: var(--color-error);
+}
+
+/* Existing validation icon styles */
+.validation-icon {
+  transition: all var(--transition-short) ease;
+}
+
+.validation-icon.valid {
+  color: var(--color-success);
+}

@@ -65,6 +65,10 @@ export const isValidEmail = (email) => {
    * @returns {Object} Validation results
    */
   export const validateUsername = (username) => {
+    // Trim the username
+    username = username ? username.trim() : '';
+    
+    // Check for empty username
     if (!username) {
       return {
         isValid: false,
@@ -80,6 +84,13 @@ export const isValidEmail = (email) => {
       };
     }
     
+    if (username.length > 20) {
+      return {
+        isValid: false,
+        message: 'Username must be no more than 20 characters'
+      };
+    }
+    
     // Check for spaces
     if (/\s/.test(username)) {
       return {
@@ -88,11 +99,25 @@ export const isValidEmail = (email) => {
       };
     }
     
-    // Check for special characters (allow letters, numbers, underscore, hyphen)
-    if (!/^[a-zA-Z0-9_-]+$/.test(username)) {
+    // Check for valid characters (letters, numbers, underscore, hyphen)
+    // First character must be a letter
+    if (!/^[a-zA-Z][a-zA-Z0-9_-]*$/.test(username)) {
       return {
         isValid: false,
-        message: 'Username can only contain letters, numbers, underscore (_) and hyphen (-)'
+        message: 'Username must start with a letter and can only contain letters, numbers, underscore (_) and hyphen (-)'
+      };
+    }
+    
+    // Prevent certain usernames
+    const reservedUsernames = [
+      'admin', 'administrator', 'moderator', 'support', 
+      'help', 'system', 'root', 'webmaster'
+    ];
+    
+    if (reservedUsernames.includes(username.toLowerCase())) {
+      return {
+        isValid: false,
+        message: 'This username is not allowed'
       };
     }
     
