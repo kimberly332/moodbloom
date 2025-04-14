@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
 
-// Import our theme styles
-import { colors, typography, spacing, borders, shadows, transitions } from '../../styles/theme';
+// Import styles
+import '../../styles/Auth.css';
 
 const MultiStepSignUp = () => {
   const navigate = useNavigate();
@@ -275,13 +275,13 @@ const MultiStepSignUp = () => {
     switch (currentStep) {
       case 1: // Email
         return (
-          <div style={styles.stepContainer} key="step1">
-            <div style={styles.formGroup}>
-              <label style={styles.label} htmlFor="email">
-                Email address<span style={styles.requiredStar}>*</span>
+          <div className="auth-step-content" key="step1">
+            <div className="auth-form-group">
+              <label className="auth-label" htmlFor="email">
+                Email address<span className="auth-required">*</span>
               </label>
-              <div style={styles.inputContainer}>
-                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={styles.icon}>
+              <div className="auth-input-container">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="auth-input-icon">
                   <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
                   <polyline points="22,6 12,13 2,6"></polyline>
                 </svg>
@@ -294,39 +294,36 @@ const MultiStepSignUp = () => {
                   placeholder="your.email@example.com"
                   value={formData.email}
                   onChange={handleChange}
-                  style={{
-                    ...styles.input,
-                    ...(fieldErrors.email ? styles.inputError : {})
-                  }}
+                  className={`auth-input ${fieldErrors.email ? 'auth-input-error' : ''}`}
                 />
               </div>
               {fieldErrors.email ? (
-                <div style={styles.errorMessage}>{fieldErrors.email}</div>
+                <div className="auth-error-message">{fieldErrors.email}</div>
               ) : (
-                <div style={styles.helperText}>We'll use this for account verification</div>
+                <div className="auth-helper-text">We'll use this for account verification</div>
               )}
             </div>
             
-            <div style={{...styles.formGroup, marginBottom: '32px', marginTop: '32px'}}>
+            <div className="auth-form-group auth-button-container">
               <button 
                 type="button" 
                 onClick={handleNextStep}
-                style={styles.primaryButton}
+                className="auth-button"
                 disabled={!formData.email}
               >
                 Continue
               </button>
             </div>
             
-            <div style={styles.divider}>
-              <div style={styles.dividerLine}></div>
-              <span style={styles.dividerText}>Already have an account?</span>
-              <div style={styles.dividerLine}></div>
+            <div className="auth-divider">
+              <div className="auth-divider-line"></div>
+              <span className="auth-divider-text">Already have an account?</span>
+              <div className="auth-divider-line"></div>
             </div>
             
-            <div style={styles.formGroup}>
-              <Link to="/login" style={{ textDecoration: 'none' }}>
-                <button type="button" style={{...styles.secondaryButton, width: '100%'}}>
+            <div className="auth-form-group">
+              <Link to="/login" className="auth-link-button">
+                <button type="button" className="auth-secondary-button">
                   Sign in
                 </button>
               </Link>
@@ -336,14 +333,14 @@ const MultiStepSignUp = () => {
         
       case 2: // Username and Password
         return (
-          <div style={styles.stepContainer} key="step2">
+          <div className="auth-step-content" key="step2">
             {/* Username field */}
-            <div style={styles.formGroup}>
-              <label style={styles.label} htmlFor="username">
-                Username<span style={styles.requiredStar}>*</span>
+            <div className="auth-form-group">
+              <label className="auth-label" htmlFor="username">
+                Username<span className="auth-required">*</span>
               </label>
-              <div style={styles.inputContainer}>
-                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={styles.icon}>
+              <div className="auth-input-container">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="auth-input-icon">
                   <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
                   <circle cx="12" cy="7" r="4"></circle>
                 </svg>
@@ -356,26 +353,23 @@ const MultiStepSignUp = () => {
                   placeholder="Choose a username"
                   value={formData.username}
                   onChange={handleChange}
-                  style={{
-                    ...styles.input,
-                    ...(fieldErrors.username ? styles.inputError : {})
-                  }}
+                  className={`auth-input ${fieldErrors.username ? 'auth-input-error' : ''}`}
                 />
               </div>
               {fieldErrors.username ? (
-                <div style={styles.errorMessage}>{fieldErrors.username}</div>
+                <div className="auth-error-message">{fieldErrors.username}</div>
               ) : (
-                <div style={styles.helperText}>This will be your unique identifier</div>
+                <div className="auth-helper-text">This will be your unique identifier</div>
               )}
             </div>
             
             {/* Password */}
-            <div style={styles.formGroup}>
-              <label style={styles.label} htmlFor="password">
-                Password<span style={styles.requiredStar}>*</span>
+            <div className="auth-form-group">
+              <label className="auth-label" htmlFor="password">
+                Password<span className="auth-required">*</span>
               </label>
-              <div style={styles.inputContainer}>
-                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={styles.icon}>
+              <div className="auth-input-container">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="auth-input-icon">
                   <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
                   <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
                 </svg>
@@ -388,24 +382,21 @@ const MultiStepSignUp = () => {
                   placeholder="Create a password"
                   value={formData.password}
                   onChange={handleChange}
-                  style={{
-                    ...styles.input,
-                    ...(fieldErrors.password ? styles.inputError : {})
-                  }}
+                  className={`auth-input ${fieldErrors.password ? 'auth-input-error' : ''}`}
                 />
               </div>
               {fieldErrors.password && (
-                <div style={styles.errorMessage}>{fieldErrors.password}</div>
+                <div className="auth-error-message">{fieldErrors.password}</div>
               )}
             </div>
             
             {/* Confirm Password */}
-            <div style={styles.formGroup}>
-              <label style={styles.label} htmlFor="confirmPassword">
-                Confirm password<span style={styles.requiredStar}>*</span>
+            <div className="auth-form-group">
+              <label className="auth-label" htmlFor="confirmPassword">
+                Confirm password<span className="auth-required">*</span>
               </label>
-              <div style={styles.inputContainer}>
-                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={styles.icon}>
+              <div className="auth-input-container">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="auth-input-icon">
                   <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
                   <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
                 </svg>
@@ -418,22 +409,19 @@ const MultiStepSignUp = () => {
                   placeholder="Confirm your password"
                   value={formData.confirmPassword}
                   onChange={handleChange}
-                  style={{
-                    ...styles.input,
-                    ...(fieldErrors.confirmPassword ? styles.inputError : {})
-                  }}
+                  className={`auth-input ${fieldErrors.confirmPassword ? 'auth-input-error' : ''}`}
                 />
               </div>
               {fieldErrors.confirmPassword && (
-                <div style={styles.errorMessage}>{fieldErrors.confirmPassword}</div>
+                <div className="auth-error-message">{fieldErrors.confirmPassword}</div>
               )}
             </div>
             
             {/* Password requirements */}
-            <div style={styles.passwordRequirements}>
-              <ul style={styles.requirementsList}>
-                <li style={{...styles.requirementItem, color: passwordMeetsMinLength ? colors.success : colors.text.secondary}}>
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{marginRight: spacing.xs}}>
+            <div className="auth-password-requirements">
+              <ul className="auth-requirements-list">
+                <li className={`auth-requirement-item ${passwordMeetsMinLength ? 'met' : ''}`}>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="auth-requirement-icon">
                     {passwordMeetsMinLength ? (
                       <path d="M20 6L9 17l-5-5" />
                     ) : (
@@ -442,8 +430,8 @@ const MultiStepSignUp = () => {
                   </svg>
                   At least 6 characters long
                 </li>
-                <li style={{...styles.requirementItem, color: passwordsMatch ? colors.success : colors.text.secondary}}>
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{marginRight: spacing.xs}}>
+                <li className={`auth-requirement-item ${passwordsMatch ? 'met' : ''}`}>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="auth-requirement-icon">
                     {passwordsMatch ? (
                       <path d="M20 6L9 17l-5-5" />
                     ) : (
@@ -456,12 +444,12 @@ const MultiStepSignUp = () => {
             </div>
             
             {/* Navigation buttons */}
-            <div style={{...styles.formGroup, marginBottom: '32px', marginTop: '32px'}}>
-              <div style={styles.buttonGroup}>
+            <div className="auth-form-group auth-button-container">
+              <div className="auth-button-group">
                 <button 
                   type="button" 
                   onClick={handlePrevStep}
-                  style={styles.secondaryButton}
+                  className="auth-secondary-button"
                 >
                   Back
                 </button>
@@ -469,7 +457,7 @@ const MultiStepSignUp = () => {
                 <button 
                   type="button" 
                   onClick={handleNextStep}
-                  style={{...styles.primaryButton, flex: 1}}
+                  className="auth-button"
                   disabled={!formData.username || !passwordMeetsMinLength || !passwordsMatch}
                 >
                   Continue
@@ -481,14 +469,14 @@ const MultiStepSignUp = () => {
         
       case 3: // Nickname
         return (
-          <div style={styles.stepContainer} key="step3">
-            <div style={styles.formSection}>
-              <p style={styles.stepDescription}>This is how other users will see you in MoodBloom.</p>
+          <div className="auth-step-content" key="step3">
+            <div className="auth-form-section">
+              <p className="auth-step-description">This is how other users will see you in MoodBloom.</p>
               
-              <div style={styles.formGroup}>
-                <label style={styles.label} htmlFor="nickname">Display name</label>
-                <div style={styles.inputContainer}>
-                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={styles.icon}>
+              <div className="auth-form-group">
+                <label className="auth-label" htmlFor="nickname">Display name</label>
+                <div className="auth-input-container">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="auth-input-icon">
                     <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
                     <circle cx="12" cy="7" r="4"></circle>
                   </svg>
@@ -500,21 +488,23 @@ const MultiStepSignUp = () => {
                     placeholder="What should we call you?"
                     value={formData.nickname}
                     onChange={handleChange}
-                    style={styles.input}
+                    className="auth-input"
                   />
                 </div>
-                <div style={styles.helperText}>
-                  {formData.nickname ? '' : `We'll use "${formData.username}" if you leave this blank`}
-                </div>
+                {!formData.nickname && (
+                  <div className="auth-helper-text">
+                    We'll use "{formData.username}" if you leave this blank
+                  </div>
+                )}
               </div>
             </div>
             
-            <div style={{...styles.formGroup, marginBottom: '32px', marginTop: '32px'}}>
-              <div style={styles.buttonGroup}>
+            <div className="auth-form-group auth-button-container">
+              <div className="auth-button-group">
                 <button 
                   type="button" 
                   onClick={handlePrevStep}
-                  style={styles.secondaryButton}
+                  className="auth-secondary-button"
                 >
                   Back
                 </button>
@@ -522,7 +512,7 @@ const MultiStepSignUp = () => {
                 <button 
                   type="button" 
                   onClick={handleNextStep}
-                  style={{...styles.primaryButton, flex: 1}}
+                  className="auth-button"
                 >
                   Continue
                 </button>
@@ -533,23 +523,23 @@ const MultiStepSignUp = () => {
         
       case 4: // Profile Image
         return (
-          <div style={styles.stepContainer} key="step4">
-            <div style={styles.formSection}>
-              <p style={styles.stepDescription}>Add a profile picture to personalize your account. You can change it anytime.</p>
+          <div className="auth-step-content" key="step4">
+            <div className="auth-form-section">
+              <p className="auth-step-description">Add a profile picture to personalize your account. You can change it anytime.</p>
               
-              <div style={styles.profileImageContainer}>
-                <div style={styles.imageContainer}>
+              <div className="auth-profile-upload">
+                <div className="auth-profile-image">
                   {formData.profileImage ? (
-                    <img src={formData.profileImage} alt="Profile" style={styles.profileImage} />
+                    <img src={formData.profileImage} alt="Profile" />
                   ) : (
-                    <svg style={styles.placeholderIcon} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1">
+                    <svg className="auth-profile-placeholder" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1">
                       <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
                       <circle cx="12" cy="7" r="4"></circle>
                     </svg>
                   )}
                 </div>
-                <button type="button" style={styles.uploadButton} onClick={handleImageUpload}>
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{marginRight: spacing.xs}}>
+                <button type="button" className="auth-upload-button" onClick={handleImageUpload}>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{marginRight: '4px'}}>
                     <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
                     <polyline points="17 8 12 3 7 8"></polyline>
                     <line x1="12" y1="3" x2="12" y2="15"></line>
@@ -559,12 +549,12 @@ const MultiStepSignUp = () => {
               </div>
             </div>
             
-            <div style={{...styles.formGroup, marginBottom: '32px', marginTop: '32px'}}>
-              <div style={styles.buttonGroup}>
+            <div className="auth-form-group auth-button-container">
+              <div className="auth-button-group">
                 <button 
                   type="button" 
                   onClick={handlePrevStep}
-                  style={styles.secondaryButton}
+                  className="auth-secondary-button"
                 >
                   Back
                 </button>
@@ -572,22 +562,17 @@ const MultiStepSignUp = () => {
                 <button 
                   type="submit" 
                   disabled={loading}
-                  style={{
-                    ...styles.primaryButton, 
-                    flex: 1,
-                    opacity: loading ? 0.7 : 1,
-                    cursor: loading ? 'not-allowed' : 'pointer',
-                  }}
+                  className={`auth-button ${loading ? 'loading' : ''}`}
                 >
                   {loading ? 'Creating account...' : 'Create account'}
                 </button>
               </div>
               
-              <div style={styles.skipLink}>
+              <div className="auth-skip-link">
                 <button 
                   type="submit"
                   disabled={loading}
-                  style={styles.textButton}
+                  className="auth-text-button"
                 >
                   Skip this step
                 </button>
@@ -601,282 +586,11 @@ const MultiStepSignUp = () => {
     }
   };
   
-  // Styles
-  const styles = {
-    container: {
-      minHeight: '100vh',
-      display: 'flex',
-      flexDirection: 'column',
-      justifyContent: 'center',
-      alignItems: 'center',
-      padding: spacing.md,
-      background: `linear-gradient(135deg, ${colors.background.default} 0%, ${colors.background.paper} 100%)`,
-    },
-    card: {
-      width: '100%',
-      maxWidth: '480px',
-      padding: spacing.xl,
-      backgroundColor: colors.background.paper,
-      borderRadius: borders.radius.large,
-      boxShadow: shadows.large,
-      animation: 'fadeIn 0.6s ease',
-    },
-    logoContainer: {
-      display: 'flex',
-      justifyContent: 'center',
-      marginBottom: spacing.md,
-    },
-    logo: {
-      width: '64px',
-      height: '64px',
-    },
-    title: {
-      textAlign: 'center',
-      marginBottom: '24px',
-      background: 'linear-gradient(45deg, #9D4EDD 30%, #C77DFF 90%)',
-      WebkitBackgroundClip: 'text',
-      WebkitTextFillColor: 'transparent',
-      fontSize: typography.fontSize.xxl,
-      fontWeight: typography.fontWeight.semiBold,
-    },
-    stepTitle: {
-      textAlign: 'center',
-      marginBottom: '16px',
-      fontSize: typography.fontSize.xl,
-      fontWeight: typography.fontWeight.semiBold,
-      color: colors.text.primary,
-    },
-    stepDescription: {
-      textAlign: 'center',
-      marginBottom: '24px',
-      fontSize: typography.fontSize.md,
-      color: colors.text.secondary,
-    },
-    form: {
-      width: '100%',
-    },
-    stepContainer: {
-      animation: 'slideUp 0.5s ease',
-      minHeight: '350px', // Set a minimum height to prevent layout shifts
-    },
-    stepIndicatorContainer: {
-      display: 'flex',
-      justifyContent: 'center',
-      marginBottom: spacing.lg,
-    },
-    stepDot: (index) => ({
-      width: '10px',
-      height: '10px',
-      borderRadius: '50%',
-      backgroundColor: currentStep === index + 1
-        ? colors.primary.main 
-        : (index + 1) < currentStep
-          ? colors.primary.light 
-          : 'rgba(255, 255, 255, 0.2)',
-      margin: `0 ${spacing.xs}`,
-      transition: `all ${transitions.short} ease`,
-    }),
-    formGroup: {
-      marginBottom: spacing.md,
-    },
-    formSection: {
-      marginBottom: spacing.lg,
-    },
-    label: {
-      display: 'block',
-      marginBottom: spacing.xs,
-      fontSize: typography.fontSize.sm,
-      fontWeight: typography.fontWeight.medium,
-      color: colors.text.secondary,
-    },
-    requiredStar: {
-      color: colors.error,
-      marginLeft: spacing.xs,
-    },
-    inputContainer: {
-      position: 'relative',
-    },
-    input: {
-      width: '100%',
-      padding: `${spacing.sm} ${spacing.md}`,
-      paddingLeft: spacing.xl,
-      backgroundColor: colors.background.elevated,
-      border: `${borders.width.thin} solid rgba(255, 255, 255, 0.1)`,
-      borderRadius: borders.radius.medium,
-      color: colors.text.primary,
-      fontSize: typography.fontSize.md,
-      transition: `all ${transitions.short} ease`,
-    },
-    inputError: {
-      borderColor: colors.error,
-    },
-    icon: {
-      position: 'absolute',
-      left: spacing.sm,
-      top: '50%',
-      transform: 'translateY(-50%)',
-      color: colors.text.secondary,
-    },
-    errorMessage: {
-      color: colors.error,
-      fontSize: typography.fontSize.xs,
-      marginTop: spacing.xs,
-      fontWeight: typography.fontWeight.medium,
-    },
-    helperText: {
-      fontSize: typography.fontSize.xs,
-      color: colors.text.secondary,
-      marginTop: spacing.xs,
-    },
-    buttonGroup: {
-      display: 'flex',
-      gap: '12px',
-    },
-    primaryButton: {
-      display: 'inline-flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      width: '100%',
-      padding: `${spacing.sm} ${spacing.lg}`,
-      background: colors.gradients.primary,
-      color: colors.primary.contrastText,
-      border: 'none',
-      borderRadius: borders.radius.medium,
-      cursor: 'pointer',
-      fontWeight: typography.fontWeight.medium,
-      fontSize: typography.fontSize.md,
-      transition: `all ${transitions.short} ease`,
-      boxShadow: shadows.small,
-    },
-    secondaryButton: {
-      display: 'inline-flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      padding: `${spacing.sm} ${spacing.lg}`,
-      background: 'transparent',
-      color: colors.primary.light,
-      border: `${borders.width.thin} solid ${colors.primary.light}`,
-      borderRadius: borders.radius.medium,
-      cursor: 'pointer',
-      fontWeight: typography.fontWeight.medium,
-      fontSize: typography.fontSize.md,
-      transition: `all ${transitions.short} ease`,
-    },
-    textButton: {
-      background: 'transparent',
-      border: 'none',
-      color: colors.text.secondary,
-      fontSize: typography.fontSize.sm,
-      cursor: 'pointer',
-      padding: spacing.xs,
-      transition: `color ${transitions.short} ease`,
-    },
-    skipLink: {
-      display: 'flex',
-      justifyContent: 'center',
-      marginTop: spacing.md,
-    },
-    divider: {
-      display: 'flex',
-      alignItems: 'center',
-      margin: `${spacing.md} 0`,
-    },
-    dividerLine: {
-      flex: 1,
-      height: '1px',
-      backgroundColor: 'rgba(255, 255, 255, 0.1)',
-    },
-    dividerText: {
-      padding: `0 ${spacing.sm}`,
-      color: colors.text.secondary,
-      fontSize: typography.fontSize.sm,
-    },
-    errorAlert: {
-      backgroundColor: 'rgba(255, 82, 82, 0.1)',
-      color: colors.error,
-      border: `${borders.width.thin} solid ${colors.error}`,
-      padding: `${spacing.sm} ${spacing.md}`,
-      borderRadius: borders.radius.medium,
-      fontSize: typography.fontSize.sm,
-      marginBottom: spacing.md,
-      display: 'flex',
-      alignItems: 'center',
-    },
-    errorIcon: {
-      marginRight: spacing.xs,
-    },
-    profileImageContainer: {
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
-      marginTop: spacing.xl,
-    },
-    imageContainer: {
-      width: '150px',
-      height: '150px',
-      borderRadius: '50%',
-      backgroundColor: colors.background.elevated,
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-      marginBottom: spacing.md,
-      overflow: 'hidden',
-      border: `${borders.width.thin} solid rgba(255, 255, 255, 0.1)`,
-      boxShadow: shadows.medium,
-      transition: `all ${transitions.medium} ease`,
-    },
-    profileImage: {
-      width: '100%',
-      height: '100%',
-      objectFit: 'cover',
-    },
-    placeholderIcon: {
-      width: '60px',
-      height: '60px',
-      color: colors.text.secondary,
-    },
-    uploadButton: {
-      display: 'inline-flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      background: 'rgba(157, 78, 221, 0.1)',
-      color: colors.primary.light,
-      border: `${borders.width.thin} solid ${colors.primary.light}`,
-      borderRadius: borders.radius.medium,
-      padding: `${spacing.xs} ${spacing.md}`,
-      cursor: 'pointer',
-      fontSize: typography.fontSize.sm,
-      fontWeight: typography.fontWeight.medium,
-      transition: `all ${transitions.short} ease`,
-    },
-    passwordRequirements: {
-      marginTop: spacing.xs,
-    },
-    requirementsList: {
-      listStyleType: 'none',
-      padding: 0,
-      margin: `${spacing.xs} 0 ${spacing.md} 0`,
-      fontSize: typography.fontSize.xs,
-    },
-    requirementItem: {
-      display: 'flex',
-      alignItems: 'center',
-      marginBottom: spacing.xs,
-      transition: `color ${transitions.short} ease`,
-    },
-    optionalLabel: {
-      fontSize: typography.fontSize.sm,
-      fontStyle: 'italic',
-      color: colors.text.secondary,
-      marginBottom: spacing.md,
-    },
-  };
-  
   return (
-    <div style={styles.container}>
-      <div style={styles.card}>
-        <div style={styles.logoContainer}>
-          <svg width="64" height="64" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" style={styles.logo}>
+    <div className="auth-container">
+      <div className="auth-card">
+        <div className="auth-logo-container">
+          <svg width="64" height="64" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" className="auth-logo">
             <path d="M40 10C23.4315 10 10 23.4315 10 40C10 56.5685 23.4315 70 40 70C56.5685 70 70 56.5685 70 40C70 23.4315 56.5685 10 40 10Z" fill="#1E1E1E" stroke="#9D4EDD" strokeWidth="2"/>
             <path d="M40 15C26.1929 15 15 26.1929 15 40C15 53.8071 26.1929 65 40 65C53.8071 65 65 53.8071 65 40C65 26.1929 53.8071 15 40 15Z" fill="#1E1E1E"/>
             <path d="M48 30C48 34.4183 44.4183 38 40 38C35.5817 38 32 34.4183 32 30C32 25.5817 35.5817 22 40 22C44.4183 22 48 25.5817 48 30Z" fill="#9D4EDD"/>
@@ -885,17 +599,26 @@ const MultiStepSignUp = () => {
           </svg>
         </div>
         
-        <h2 style={styles.stepTitle}>{getStepTitle()}</h2>
+        <h2 className="auth-title">{getStepTitle()}</h2>
         
-        <div style={styles.stepIndicatorContainer}>
+        <div className="auth-step-container">
           {Array.from({ length: totalSteps }).map((_, index) => (
-            <div key={index} style={styles.stepDot(index)} />
+            <div 
+              key={index} 
+              className={`auth-step-dot ${
+                currentStep === index + 1 
+                  ? 'active' 
+                  : index + 1 < currentStep 
+                    ? 'completed' 
+                    : 'inactive'
+              }`} 
+            />
           ))}
         </div>
         
         {error && (
-          <div style={styles.errorAlert} role="alert">
-            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={styles.errorIcon}>
+          <div className="auth-error-alert" role="alert">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="auth-error-icon">
               <circle cx="12" cy="12" r="10"></circle>
               <line x1="12" y1="8" x2="12" y2="12"></line>
               <line x1="12" y1="16" x2="12.01" y2="16"></line>
@@ -904,7 +627,7 @@ const MultiStepSignUp = () => {
           </div>
         )}
         
-        <form style={styles.form} onSubmit={handleSubmit}>
+        <form className="auth-form" onSubmit={handleSubmit}>
           {renderStepContent()}
         </form>
       </div>

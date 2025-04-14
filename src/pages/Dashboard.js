@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 
+// Import styles
+import '../styles/Dashboard.css';
+
 const Dashboard = () => {
   const { currentUser, logout } = useAuth();
   const navigate = useNavigate();
@@ -20,24 +23,26 @@ const Dashboard = () => {
   };
   
   return (
-    <div>
-      <h2>Dashboard</h2>
-      
-      {error && (
-        <div role="alert">
-          <span>{error}</span>
+    <div className="dashboard-container">
+      <div className="dashboard-content">
+        <h2 className="dashboard-title">Dashboard</h2>
+        
+        {error && (
+          <div className="dashboard-alert error" role="alert">
+            <span>{error}</span>
+          </div>
+        )}
+        
+        <div className="dashboard-profile">
+          <h3 className="dashboard-section-title">Profile</h3>
+          <p className="dashboard-profile-info"><strong>Email:</strong> {currentUser.email}</p>
+          <p className="dashboard-profile-info"><strong>Nickname:</strong> {currentUser.displayName}</p>
         </div>
-      )}
-      
-      <div>
-        <h3>Profile</h3>
-        <p><strong>Email:</strong> {currentUser.email}</p>
-        <p><strong>Nickname:</strong> {currentUser.displayName}</p>
+        
+        <button className="dashboard-logout-button" onClick={handleLogout}>
+          Log Out
+        </button>
       </div>
-      
-      <button onClick={handleLogout}>
-        Log Out
-      </button>
     </div>
   );
 };
