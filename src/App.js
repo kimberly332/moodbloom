@@ -3,10 +3,13 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import { AuthProvider, useAuth } from './contexts/AuthContext';
 
 // Auth components
-import SignUp from './components/auth/SignUp';
+import MultiStepSignUp from './components/auth/MultiStepSignUp'; 
 import Login from './components/auth/Login';
 import ForgotPassword from './components/auth/ForgotPassword';
 import Dashboard from './pages/Dashboard';
+
+// Global styles
+import './styles/global.css';
 
 // Protected route component
 const PrivateRoute = ({ children }) => {
@@ -20,7 +23,7 @@ function App() {
       <AuthProvider>
         <Routes>
           {/* Auth routes */}
-          <Route path="/signup" element={<SignUp />} />
+          <Route path="/signup" element={<MultiStepSignUp />} />
           <Route path="/login" element={<Login />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
           
